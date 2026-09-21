@@ -20,10 +20,12 @@ namespace CaptureProxy
         private bool isStopped = true;
         private bool isDisposed = false;
 
-        public HttpProxy(int port, Settings? settings = null)
+        public HttpProxy(int port, Settings? settings = null)=>HttpProxy(IPAddress.Any, port, settings);
+        
+        public HttpProxy(IPAddress ipAddress,int port, Settings? settings = null)
         {
             this.port = port;
-            this.server = new TcpListener(IPAddress.Any, this.port);
+            this.server = new TcpListener(ipAddress, this.port);
 
             this.Settings = settings ?? new Settings();
         }
